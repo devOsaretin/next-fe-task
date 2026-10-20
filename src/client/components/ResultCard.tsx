@@ -25,14 +25,14 @@ export function ResultCard({ result }: { result: SearchResult }) {
             component="img"
             src={artwork}
             alt={result.name}
-            sx={{ width: 56, height: 56, objectFit: "cover" }}
+            sx={{ width: 48, height: 48, objectFit: "cover", borderRadius: 1, flexShrink: 0 }}
           />
         ) : null}
         <Box>
-          <Typography component="p" variant="subtitle1">
+          <Typography component="p" variant="subtitle1" sx={{ m: 0, fontWeight: 600 }}>
             {result.name}
           </Typography>
-          <Typography component="p" variant="body2" color="text.secondary">
+          <Typography component="p" variant="body2" color="text.secondary" sx={{ m: 0 }}>
             {subtitle(result)}
           </Typography>
         </Box>

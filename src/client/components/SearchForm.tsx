@@ -20,21 +20,24 @@ export function SearchForm() {
       aria-label="Search music"
       aria-busy={isLoading}
       onSubmit={handleSubmit}
-      sx={{ display: "flex", gap: 2, my: 4 }}>
+      sx={{ display: "flex", gap: 1, alignItems: "center", my: 3 }}>
       <TextField
-        label="Search music"
+        placeholder="Search music"
         variant="outlined"
+        hiddenLabel
         fullWidth
         value={term}
         onChange={e => setTerm(e.target.value)}
         disabled={isLoading}
         autoFocus
+        slotProps={{ htmlInput: { "aria-label": "Search music" } }}
+        sx={{ bgcolor: "#fff" }}
       />
       <Button
         type="submit"
         variant="contained"
         disabled={!term.trim() || isLoading}
-        sx={{ minWidth: 120 }}>
+        sx={{ minWidth: 104, height: 56 }}>
         {isLoading ? "Searching…" : "Search"}
       </Button>
     </Box>

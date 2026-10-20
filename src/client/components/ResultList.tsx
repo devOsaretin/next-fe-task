@@ -49,7 +49,7 @@ export function ResultList() {
         <Stack
           component="ul"
           aria-label={term ? `Search results for ${term}` : "Search results"}
-          spacing={1.5}
+          spacing={1}
           sx={{ listStyle: "none", m: 0, p: 0 }}
         >
           {visibleResults.map(result => (
