@@ -2,9 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { SearchEntity, SearchResult, SearchStatus } from "../../types.ts";
 import { searchItunes } from "./searchThunks.ts";
 
+const PAGE_SIZE = 10;
+
 export interface SearchState {
   term: string;
   entity: SearchEntity;
+  visibleResultsCount: number;
   resultCount: number;
   results: SearchResult[];
   status: SearchStatus;
@@ -17,6 +20,7 @@ export interface SearchState {
 const initialState: SearchState = {
   term: "",
   entity: "song",
+  visibleResultsCount: 0,
   resultCount: 0,
   results: [],
   status: "idle",
@@ -29,7 +33,15 @@ const initialState: SearchState = {
 const searchSlice = createSlice({
   name: "search",
   initialState,
-  reducers: {},
+  reducers: {
+    showMore: state => {
+      state.visibleResultsCount = Math.min(
+        state.visibleResultsCount + PAGE_SIZE,
+        state.results.length,
+      );
+      state.hasMore = state.visibleResultsCount < state.results.length;
+    },
+  },
   extraReducers: builder => {
     builder.addCase(searchItunes.pending, (state, action) => {
       state.status = "loading";
@@ -42,6 +54,11 @@ const searchSlice = createSlice({
       state.status = "succeeded";
       state.results = action.payload.results;
       state.resultCount = action.payload.resultCount;
+      state.visibleResultsCount = Math.min(
+        PAGE_SIZE,
+        action.payload.results.length,
+      );
+      state.hasMore = action.payload.results.length > state.visibleResultsCount;
     });
 
     builder.addCase(searchItunes.rejected, (state, action) => {
@@ -52,3 +69,4 @@ const searchSlice = createSlice({
 });
 
 export const searchReducer = searchSlice.reducer;
+export const { showMore } = searchSlice.actions;
