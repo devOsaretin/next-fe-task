@@ -32,26 +32,40 @@ export function ResultList() {
     return () => observer.disconnect();
   }, [hasMore, status, visibleResultsCount, dispatch]);
 
+  const visibleResults = results.slice(0, visibleResultsCount);
+
   return (
     <Box>
-      {isLoading ? <LinearProgress sx={{ mb: 2 }} /> : null}
+      {isLoading ? <LinearProgress aria-label="Searching" sx={{ mb: 2 }} /> : null}
       {status === "failed" ? (
-        <Typography color="error">
+        <Typography role="status" color="error">
           {error ?? "Search failed. Try again."}
         </Typography>
       ) : null}
       {status === "succeeded" && results.length === 0 ? (
-        <Typography>No results for “{term}”.</Typography>
+        <Typography role="status">No results for “{term}”.</Typography>
       ) : null}
-      <Stack spacing={1.5}>
-        {results.slice(0, visibleResultsCount).map(result => (
-          <ResultCard key={`${result.kind}-${result.id}`} result={result} />
-        ))}
-      </Stack>
-      <Stack
-        ref={ref}
-        style={{ height: 1, width: "100%" }}
-        aria-hidden="true"></Stack>
+      {visibleResults.length > 0 ? (
+        <Stack
+          component="ul"
+          aria-label={term ? `Search results for ${term}` : "Search results"}
+          spacing={1.5}
+          sx={{ listStyle: "none", m: 0, p: 0 }}
+        >
+          {visibleResults.map(result => (
+            <Box
+              key={`${result.kind}-${result.id}`}
+              component="li"
+              sx={{ listStyle: "none" }}
+            >
+              <ResultCard result={result} />
+            </Box>
+          ))}
+        </Stack>
+      ) : null}
+      {hasMore ? (
+        <Box ref={ref} aria-hidden sx={{ height: 1, width: "100%" }} />
+      ) : null}
     </Box>
   );
 }

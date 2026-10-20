@@ -18,6 +18,8 @@ export function SearchForm() {
   return (
     <Box
       component="form"
+      aria-label="Search music"
+      aria-busy={isLoading}
       onSubmit={handleSubmit}
       sx={{ display: "flex", gap: 2, my: 4 }}>
       <TextField

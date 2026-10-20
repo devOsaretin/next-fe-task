@@ -1,0 +1,26 @@
+import { cleanup } from "@testing-library/react";
+import "@testing-library/jest-dom/vitest";
+import { afterEach, vi } from "vitest";
+
+afterEach(() => {
+  vi.unstubAllGlobals();
+  if (typeof document !== "undefined") {
+    cleanup();
+  }
+});
+
+if (typeof window !== "undefined") {
+  Object.defineProperty(window, "matchMedia", {
+    writable: true,
+    value: (query: string) => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: () => {},
+      removeListener: () => {},
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      dispatchEvent: () => false,
+    }),
+  });
+}
