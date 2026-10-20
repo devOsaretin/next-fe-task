@@ -1,18 +1,10 @@
-export type SearchEntity = "musicArtist" | "album" | "song";
-
-export type SearchStatus =
-  | "idle"
-  | "loading"
-  | "loadingMore"
-  | "succeeded"
-  | "failed";
+export type SearchStatus = "idle" | "loading" | "succeeded" | "failed";
 
 export interface ArtistResult {
   kind: "musicArtist";
   id: number;
   name: string;
   genre: string | null;
-  url: string | null;
 }
 
 export interface AlbumResult {
@@ -22,8 +14,6 @@ export interface AlbumResult {
   artistName: string;
   artworkUrl: string | null;
   genre: string | null;
-  trackCount: number | null;
-  url: string | null;
 }
 
 export interface SongResult {
@@ -34,7 +24,6 @@ export interface SongResult {
   albumName: string | null;
   artworkUrl: string | null;
   genre: string | null;
-  url: string | null;
 }
 
 export type SearchResult = ArtistResult | AlbumResult | SongResult;

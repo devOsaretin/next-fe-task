@@ -7,7 +7,7 @@ import { showMore } from "../store/searchSlice.ts";
 export function ResultList() {
   const ref = useRef<HTMLDivElement>(null);
   const dispatch = useAppDispatch();
-  const { results, status, term, error, visibleResultsCount, hasMore } =
+  const { results, status, term, visibleResultsCount, hasMore } =
     useAppSelector(state => state.search);
   const isLoading = status === "loading";
 
@@ -39,7 +39,7 @@ export function ResultList() {
       {isLoading ? <LinearProgress aria-label="Searching" sx={{ mb: 2 }} /> : null}
       {status === "failed" ? (
         <Typography role="status" color="error">
-          {error ?? "Search failed. Try again."}
+          Search failed. Try again.
         </Typography>
       ) : null}
       {status === "succeeded" && results.length === 0 ? (

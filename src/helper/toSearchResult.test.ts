@@ -9,7 +9,6 @@ describe("toSearchResult", () => {
       artistId: 1,
       artistName: "Adele",
       primaryGenreName: "Pop",
-      artistLinkUrl: "https://www.osaretin.dev",
     };
 
     expect(toSearchResult(item)).toEqual({
@@ -17,7 +16,6 @@ describe("toSearchResult", () => {
       id: 1,
       name: "Adele",
       genre: "Pop",
-      url: "https://www.osaretin.dev",
     });
   });
 
@@ -30,8 +28,6 @@ describe("toSearchResult", () => {
       artistName: "Adele",
       artworkUrl100: "https://www.osaretin.dev/album.jpg",
       primaryGenreName: "Pop",
-      trackCount: 12,
-      collectionViewUrl: "https://www.osaretin.dev",
     };
 
     expect(toSearchResult(item)).toEqual({
@@ -41,8 +37,6 @@ describe("toSearchResult", () => {
       artistName: "Adele",
       artworkUrl: "https://www.osaretin.dev/album.jpg",
       genre: "Pop",
-      trackCount: 12,
-      url: "https://www.osaretin.dev",
     });
   });
 
@@ -56,7 +50,6 @@ describe("toSearchResult", () => {
       collectionName: "21",
       artworkUrl100: "https://www.osaretin.dev/song.jpg",
       primaryGenreName: "Pop",
-      trackViewUrl: "https://www.osaretin.dev",
     };
 
     expect(toSearchResult(item)).toEqual({
@@ -67,7 +60,6 @@ describe("toSearchResult", () => {
       albumName: "21",
       artworkUrl: "https://www.osaretin.dev/song.jpg",
       genre: "Pop",
-      url: "https://www.osaretin.dev",
     });
   });
 

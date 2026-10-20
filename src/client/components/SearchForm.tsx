@@ -11,7 +11,6 @@ export function SearchForm() {
 
   const handleSubmit = (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(term);
     dispatch(searchItunes(term.trim()));
   };
 

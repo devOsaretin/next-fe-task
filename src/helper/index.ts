@@ -12,7 +12,6 @@ export const toSearchResult = (item: ItunesItem): SearchResult | null => {
       id: item.artistId,
       name: item.artistName,
       genre: item.primaryGenreName ?? null,
-      url: item.artistLinkUrl ?? item.artistViewUrl ?? null,
     };
   }
 
@@ -29,8 +28,6 @@ export const toSearchResult = (item: ItunesItem): SearchResult | null => {
       artistName: item.artistName ?? "",
       artworkUrl: item.artworkUrl100 ?? null,
       genre: item.primaryGenreName ?? null,
-      trackCount: item.trackCount ?? null,
-      url: item.collectionViewUrl ?? null,
     };
   }
 
@@ -48,7 +45,6 @@ export const toSearchResult = (item: ItunesItem): SearchResult | null => {
       albumName: item.collectionName ?? null,
       artworkUrl: item.artworkUrl100 ?? null,
       genre: item.primaryGenreName ?? null,
-      url: item.trackViewUrl ?? null,
     };
   }
 

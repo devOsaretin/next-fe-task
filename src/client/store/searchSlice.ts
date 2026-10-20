@@ -1,31 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { SearchEntity, SearchResult, SearchStatus } from "../../types.ts";
+import type { SearchResult, SearchStatus } from "../../types.ts";
 import { searchItunes } from "./searchThunks.ts";
 
 const PAGE_SIZE = 10;
 
 export interface SearchState {
   term: string;
-  entity: SearchEntity;
   visibleResultsCount: number;
-  resultCount: number;
   results: SearchResult[];
   status: SearchStatus;
-  error: string | null;
-  loadMoreError: string | null;
   hasMore: boolean;
   searchId: string;
 }
 
 const initialState: SearchState = {
   term: "",
-  entity: "song",
   visibleResultsCount: 0,
-  resultCount: 0,
   results: [],
   status: "idle",
-  error: null,
-  loadMoreError: null,
   hasMore: false,
   searchId: "",
 };
@@ -53,7 +45,6 @@ const searchSlice = createSlice({
       if (state.searchId !== action.meta.requestId) return;
       state.status = "succeeded";
       state.results = action.payload.results;
-      state.resultCount = action.payload.resultCount;
       state.visibleResultsCount = Math.min(
         PAGE_SIZE,
         action.payload.results.length,

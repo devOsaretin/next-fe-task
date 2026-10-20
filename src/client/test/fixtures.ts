@@ -6,7 +6,6 @@ export function artist(id: number, name: string): ArtistResult {
     id,
     name,
     genre: "Pop",
-    url: null,
   };
 }
 
@@ -18,8 +17,6 @@ export function album(id: number, name: string): AlbumResult {
     artistName: "Adele",
     artworkUrl: "https://www.osaretin.dev/album.jpg",
     genre: "Pop",
-    trackCount: 12,
-    url: null,
   };
 }
 
@@ -32,6 +29,5 @@ export function song(id: number, name = `Song ${id}`): SongResult {
     albumName: "21",
     artworkUrl: "https://www.osaretin.dev/song.jpg",
     genre: "Pop",
-    url: null,
   };
 }

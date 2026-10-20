@@ -15,13 +15,9 @@ export function createSearchState(
 ): SearchState {
   return {
     term: "",
-    entity: "song",
     visibleResultsCount: 0,
-    resultCount: 0,
     results: [],
     status: "idle",
-    error: null,
-    loadMoreError: null,
     hasMore: false,
     searchId: "",
     ...overrides,
